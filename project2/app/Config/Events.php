@@ -36,6 +36,11 @@ Events::on('pre_system', static function (): void {
         ob_start(static fn ($buffer) => $buffer);
     }
 
+    // Set locale from session
+    if (session()->has('lang')) {
+        service('request')->setLocale(session('lang'));
+    }
+
     /*
      * --------------------------------------------------------------------
      * Debug Toolbar Listeners.
