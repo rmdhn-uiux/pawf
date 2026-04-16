@@ -1,55 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<?= $this->extend('layouts/main') ?>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>MyBlog</title>
+<?= $this->section('content') ?>
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
-</head>
-
-<body>
-
-	<?= $this->include('layouts/navbar'); ?>
-
-	<div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container py-5">
-        <h1 class="display-5 fw-bold">FAQ</h1>
-       
-      </div>
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold">Frequently Asked Questions</h1>
+        <p class="lead mb-0">Temukan jawaban atas pertanyaan yang sering diajukan.</p>
     </div>
+</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 my-2 card">
-				<div class="card-body">
-					<h5 class="h5">Pertanyaan? (Q)</h5>
-					<p>(A) Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
-				</div>
-			</div>
-			<div class="col-md-12 my-2 card">
-				<div class="card-body">
-					<h5 class="h5">Pertanyaan? (Q)</h5>
-					<p>(A) Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-	<div class="container py-4">
-		<footer class="pt-3 mt-4 text-muted border-top">
-			<div class="container">
-				&copy; <?= Date('Y') ?>
-			</div>
-		</footer>
-	</div>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="accordion shadow-sm" id="faqAccordion">
+                <div class="accordion-item border-0 mb-3 rounded shadow-sm">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button rounded fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Apa itu MyBlog?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            MyBlog adalah platform berbagi pengetahuan seputar dunia teknologi dan programming yang dibangun menggunakan CodeIgniter 4 dan Bootstrap 5.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item border-0 mb-3 rounded shadow-sm">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed rounded fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Bagaimana cara berkontribusi?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Anda dapat berkontribusi dengan mengirimkan artikel melalui menu kontak yang tersedia atau melalui repository GitHub kami.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item border-0 mb-3 rounded shadow-sm">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed rounded fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Apakah platform ini gratis?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Ya, semua konten di MyBlog dapat diakses secara gratis oleh siapa saja yang ingin belajar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<!-- Jquery dan Bootsrap JS -->
-	<script src="<?= base_url('js/jquery.min.js') ?>"></script>
-	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
-
-</body>
-
-</html>
+<?= $this->endSection() ?>

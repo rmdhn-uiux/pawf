@@ -1,52 +1,38 @@
+<?= $this->extend('layouts/main') ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?= $this->section('content') ?>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>MyBlog</title>
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
-</head>
-
-<body>
-
-	<?= $this->include('layouts/navbar'); ?>
-
-	<div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container py-5">
-        <h1 class="display-5 fw-bold">Blog Detail</h1>
-        <!-- <p class="col-md-8 fs-4">di laman portal berita</p> -->
-        <!-- <button class="btn btn-primary btn-sm" type="button">Read more</button> -->
-      </div>
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold"><?= $post['title'] ?></h1>
+        <div class="mt-4">
+            <span class="badge bg-light text-dark px-3 py-2 rounded-pill me-2">By <?= $post['author'] ?></span>
+            <span class="badge bg-light text-dark px-3 py-2 rounded-pill"><?= date('d F Y', strtotime($post['created_at'] ?? 'now')) ?></span>
+        </div>
     </div>
+</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 my-2 card">
-				<div class="card-body">
-					<h5 class="h5"><?= $post['title'] ?></h5>            
-                    <span><?= $post['author'] ?> | <?= $post['created_at'] ?></span>
-					<p><?= $post['content'] ?></p>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-	<div class="container py-4">
-		<footer class="pt-3 mt-4 text-muted border-top">
-			<div class="container">
-				&copy; <?= Date('Y') ?>
-			</div>
-		</footer>
-	</div>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="<?= base_url('/') ?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url('post') ?>">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $post['title'] ?></li>
+                </ol>
+            </nav>
+            <div class="bg-white p-5 rounded shadow-sm">
+                <div class="content fs-5 text-dark" style="line-height: 1.8;">
+                    <?= nl2br($post['content']) ?>
+                </div>
+                <hr class="my-5">
+                <div class="mt-4">
+                    <a href="<?= base_url('post') ?>" class="btn btn-secondary rounded-pill px-4">Kembali ke Daftar Blog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<!-- Jquery dan Bootsrap JS -->
-	<script src="<?= base_url('js/jquery.min.js') ?>"></script>
-	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
-
-</body>
-
-</html>
+<?= $this->endSection() ?>

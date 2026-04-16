@@ -1,61 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<?= $this->extend('layouts/main') ?>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>MyBlog</title>
+<?= $this->section('content') ?>
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
-</head>
-
-<body>
-
-	<?= $this->include('layouts/navbar'); ?>
-
-	<div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container py-5">
-        <h1 class="display-5 fw-bold">About</h1>
-        
-      </div>
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold">About Us</h1>
+        <p class="lead mb-0">Kenali lebih dekat siapa kami dan apa misi kami.</p>
     </div>
+</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 my-2 card">
-				<div class="card-body">
-					<h5 class="h5">Siapa Aku</h5>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
-				</div>
-			</div>
-			<div class="col-md-12 my-2 card">
-				<div class="card-body">
-					<h5 class="h5">Bisa Apa Aku</h5>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
-				</div>
-			</div>
-			<div class="col-md-12 my-2 card">
-				<div class="card-body">
-					<h5 class="h5">Bagaimana Aku</h5>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-	<div class="container py-4">
-		<footer class="pt-3 mt-4 text-muted border-top">
-			<div class="container">
-				&copy; <?= Date('Y') ?>
-			</div>
-		</footer>
-	</div>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">Siapa Aku</h5>
+                    <p class="text-muted small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">Bisa Apa Aku</h5>
+                    <p class="text-muted small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">Bagaimana Aku</h5>
+                    <p class="text-muted small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam perferendis commodi tenetur quos ducimus repellat nulla, nam magni. Commodi iusto ad harum voluptas exercitationem facere eos earum laboriosam excepturi quas?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<!-- Jquery dan Bootsrap JS -->
-	<script src="<?= base_url('js/jquery.min.js') ?>"></script>
-	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
-
-</body>
-
-</html>
+<?= $this->endSection() ?>
