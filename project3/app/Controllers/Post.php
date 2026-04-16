@@ -9,24 +9,25 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Post extends BaseController
 {
-    public function index()
+    public function index(): string
 	{
-    // buat object model $post
-    $post = new PostModel();
+        // buat object model $post
+        $post = new PostModel();
 
-    /*
-     siapkan data untuk dikirim ke view dengan nama $posts
-     dan isi datanya dengan post yang sudah terbit
-    */
-    $data['posts'] = $post->where('status', 'published')->findAll();
+        /*
+        siapkan data untuk dikirim ke view dengan nama $posts
+        dan isi datanya dengan post yang sudah terbit
+        */
+        $data['posts'] = $post->where('status', 'published')->findAll();
 
-    // kirim data ke view
-    echo view('post', $data);
+        // siapkan data untuk dikirim ke view
+        $data['title'] = 'Daftar Blog';
+        return view('post', $data);
 	}
 
 	//------------------------------------------------------------
 
-	public function viewPost($slug)
+	public function viewPost($slug): string
 	{
 		$post = new PostModel();
 		$data['post'] = $post->where([
@@ -39,6 +40,7 @@ class Post extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		echo view('post_detail', $data);
+        $data['title'] = $data['post']['title'];
+		return view('post_detail', $data);
 	}
 }
