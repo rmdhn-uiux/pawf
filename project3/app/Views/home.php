@@ -54,6 +54,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Section Postingan Terbaru -->
+    <div class="row mt-5 mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold">Artikel Terbaru</h2>
+            <hr class="mx-auto" style="width: 50px; height: 3px; background: #0d6efd;">
+        </div>
+        
+        <?php foreach ($latest_posts as $post) : ?>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <small class="text-muted d-block mb-2"><?= date('d M Y', strtotime($post['created_at'] ?? 'now')) ?></small>
+                        <h5 class="card-title fw-bold mb-3"><?= $post['title'] ?></h5>
+                        <p class="card-text text-muted small mb-4">
+                            <?= substr(strip_tags($post['content']), 0, 100) ?>...
+                        </p>
+                        <a href="<?= base_url('post/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm rounded-pill">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach ?>
+
+        <div class="col-12 text-center mt-4">
+            <a href="<?= base_url('post') ?>" class="btn btn-primary px-4 rounded-pill">Lihat Semua Artikel</a>
+        </div>
+    </div>
 </div>
 
 <?= $this->endSection() ?>

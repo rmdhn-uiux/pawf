@@ -42,6 +42,10 @@
             <?php endforeach ?>
         <?php endif ?>
     </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <?= $pager->links('post', 'bootstrap_pagination') ?>
+    </div>
 </div>
 
 <?= $this->endSection() ?>

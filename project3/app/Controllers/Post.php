@@ -28,7 +28,8 @@ class Post extends BaseController
                  ->groupEnd();
         }
 
-        $data['posts'] = $post->where('status', 'published')->findAll();
+        $data['posts'] = $post->where('status', 'published')->paginate(6, 'post');
+        $data['pager'] = $post->pager;
 
         // siapkan data untuk dikirim ke view
         $data['title'] = 'Daftar Blog';
