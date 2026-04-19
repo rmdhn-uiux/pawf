@@ -14,10 +14,20 @@ class Post extends BaseController
         // buat object model $post
         $post = new PostModel();
 
+        // ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
         /*
         siapkan data untuk dikirim ke view dengan nama $posts
         dan isi datanya dengan post yang sudah terbit
         */
+        if ($keyword) {
+            $post->groupStart()
+                 ->like('title', $keyword)
+                 ->orLike('content', $keyword)
+                 ->groupEnd();
+        }
+
         $data['posts'] = $post->where('status', 'published')->findAll();
 
         // siapkan data untuk dikirim ke view
