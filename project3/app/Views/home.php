@@ -2,83 +2,68 @@
 
 <?= $this->section('content') ?>
 
-<div class="hero-section text-center">
+<!-- Hero Section -->
+<section class="hero-section text-center">
     <div class="container">
-        <h1 class="display-3 fw-bold">Selamat Datang di MyBlog</h1>
-        <p class="lead mb-4">Temukan berbagai tutorial, berita, dan tips seputar dunia programming dan teknologi.</p>
-        <a href="<?= base_url('post') ?>" class="btn btn-light btn-lg px-5 rounded-pill shadow-sm">Lihat Blog</a>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 fw-extrabold mb-3">Selamat Datang di <span class="text-warning">MyBlog</span></h1>
+                <p class="lead mb-5 opacity-90">Temukan berbagai tutorial, berita, dan tips seputar dunia programming dan teknologi terbaru yang dikemas secara menarik.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="<?= base_url('post') ?>" class="btn btn-light btn-lg px-5 rounded-pill shadow-sm fw-bold">Jelajahi Blog</a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
+<!-- Latest Articles Section -->
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body p-4 text-center">
-                    <div class="mb-3 text-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-code-square" viewBox="0 0 16 16">
-                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                            <path d="M6.854 4.646a.5.5 0 0 1 0 .708L5.207 7l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L10.793 7l-1.647 1.646a.5.5 0 0 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2a.5.5 0 0 0-.708 0z"/>
-                        </svg>
-                    </div>
-                    <h5 class="fw-bold">Mulai ngoding PHP nich</h5>
-                    <p class="text-muted small">Pelajari dasar-dasar PHP dari nol hingga mahir dengan panduan yang mudah dimengerti.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body p-4 text-center">
-                    <div class="mb-3 text-success">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-brush" viewBox="0 0 16 16">
-                            <path d="M15.825.145a.5.5 0 0 1 .132.532 9.991 9.991 0 0 1-3.21 4.5c-.795.746-1.56 1.36-2.316 1.834L10 8l-.006.006-.007.007-.007.008-.006.006-.007.007-.007.007-.007.008-.005.005-.005.005-.005.005a.452.452 0 0 1-.004.004c-.001.001-.002.003-.003.004l-.005.005-.006.006-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005c-.031.03-.067.058-.108.082a.507.507 0 0 1-.131.06c-.013.003-.025.006-.039.008a.508.508 0 0 1-.16 0c-.014-.002-.026-.005-.039-.008a.508.508 0 0 1-.13-.059c-.042-.024-.078-.051-.11-.082l-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005c-.001-.001-.002-.003-.003-.004l-.004-.004-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005-.005c-.757-.474-1.522-1.088-2.317-1.833a9.992 9.992 0 0 1-3.21-4.5.5.5 0 0 1 .131-.532l.812-.812a.5.5 0 0 1 .53-.131c1.29.39 2.323 1.179 3.076 1.932 1.487 1.487 2.794 3.492 2.794 3.492s2.005-1.307 3.492-2.794c.753-.753 1.543-1.787 1.932-3.076a.5.5 0 0 1 .532-.131l.812.812zM1.607 10.5c.025-.1.082-.2.17-.282a.51.51 0 0 1 .356-.148.456.456 0 0 1 .311.09l.39.39.58-.58-.391-.39a1.51 1.51 0 0 0-1.037-.441 1.51 1.51 0 0 0-1.037.441l-.813.813a1.51 1.51 0 0 0-.44 1.037c0 .374.135.748.405 1.037l.006.006.005.005.005.005a.452.452 0 0 1 .004.004c.001.001.002.003.003.004l.005.005.006.006.005.005.005.005.005.005.005.005.005.005.005.005.005.005.005.005c.031.03.067.058.108.082a.507.507 0 0 1 .131.06c.013.003.025.006.039.008a.508.508 0 0 1 .16 0c.014-.002.026-.005.039-.008a.508.508 0 0 1 .13-.059c.042-.024.078-.051.11-.082l.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.001-.001.002-.003.003-.004.004-.004.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.757-.474 1.522-1.088 2.317-1.833a9.992 9.992 0 0 1 3.21-4.5.5.5 0 0 1-.131-.532l-.812-.812a.5.5 0 0 1-.53-.131c-1.29.39-2.323 1.179-3.076 1.932-1.487 1.487-2.794 3.492-2.794 3.492s-2.005-1.307-3.492-2.794c-.753-.753-1.543-1.787-1.932-3.076a.5.5 0 0 1-.532-.131l-.812.812zM1.607 10.5c.025-.1.082-.2.17-.282a.51.51 0 0 1 .356-.148.456.456 0 0 1 .311.09l.39.39.58-.58-.391-.39a1.51 1.51 0 0 0-1.037-.441 1.51 1.51 0 0 0-1.037.441l-.813.813a1.51 1.51 0 0 0-.44 1.037c0 .374.135.748.405 1.037l.006.006.005.005.005.005a.452.452 0 0 1 .004.004c.001.001.002.003.003.004l.005.005.006.006.005.005.005.005.005.005.005.005.005.005.005.005.005.005.005.005c.031.03.067.058.108.082a.507.507 0 0 1 .131.06c.013.003.025.006.039.008a.508.508 0 0 1 .16 0c.014-.002.026-.005.039-.008a.508.508 0 0 1 .13-.059c.042-.024.078-.051.11-.082l.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.001-.001.002-.003.003-.004.004-.004.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.005-.005.757-.474 1.522-1.088 2.317-1.833a9.992 9.992 0 0 1 3.21-4.5.5.5 0 0 1-.131-.532l-.812-.812a.5.5 0 0 1-.53-.131c-1.29.39-2.323 1.179-3.076 1.932-1.487 1.487-2.794 3.492-2.794 3.492s-2.005-1.307-3.492-2.794c-.753-.753-1.543-1.787-1.932-3.076a.5.5 0 0 1-.532-.131l-.812.812z"/>
-                        </svg>
-                    </div>
-                    <h5 class="fw-bold">Jadi paham CSS dan JS</h5>
-                    <p class="text-muted small">Tingkatkan estetika dan interaktivitas website Anda dengan desain yang modern dan responsif.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body p-4 text-center">
-                    <div class="mb-3 text-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-rocket-takeoff" viewBox="0 0 16 16">
-                            <path d="M9.752 6.193c.599.6 1.73.437 2.528-.362.798-.799.96-1.932.362-2.531-.599-.6-1.73-.438-2.528.361-.798.8-.96 1.933-.362 2.532Z"/>
-                            <path d="M15.811 3.312c-.363 1.534-1.334 3.626-3.64 6.21.911 2.514 1.054 4.755.436 5.756-.465.75-1.149 1.022-1.797.899-1.816-.346-5.13-5.096-5.671-5.88l-2.058.35c-1.16.196-2.185-.322-2.844-1.255C-.135 8.129-.028 6.703.921 5.47L3.191 2.533c.515-.668 1.435-1.01 2.312-.868l2.128.345c.421-.579 1.113-1.528 1.956-2.403C10.518-.32 11.95-.512 12.825.29c.811.745.892 2.126.33 3.738l.005.01-.001.002-1.11 3.012.012.011-.004.01-.01-.011-.012.193c-.44.873-.832 1.584-1.174 2.167A15.242 15.242 0 0 0 13.59 5.86c.285-.06.57-.1.854-.124l.005-.002a.493.493 0 0 1 .515.228l.847 1.35c.184.293.15.666-.083.923L14.28 9.924c-.042.045-.088.087-.136.126l-.003.004-.001.002-.122.128c-.732.769-1.462 1.537-2.228 2.269l-.01.01-.01.01-.01.01-.01.01c-.732.767-1.5 1.497-2.269 2.229l-.004.003-.126.122c-.039.048-.081.094-.126.136l-1.673 1.442c-.257.233-.63.267-.923.083l-1.35-.847a.493.493 0 0 1-.228-.515l.002-.005c.024-.284.064-.569.124-.854a15.242 15.242 0 0 0-3.53-2.512c-.583.342-1.294.734-2.167 1.174l-.193.012.011.01-.01.004-.011-.012-.01-.011-3.012 1.11-.002.001-.01-.005c-1.612.562-2.993.481-3.738-.33-.802-.876-.61-2.307.26-3.242.875-.843 1.824-1.535 2.403-1.956l-.345-2.128c-.142-.877.2-1.797.868-2.312L5.47.921c1.233-.949 2.659-1.056 3.931-.194.933.659 1.451 1.684 1.255 2.844l-.35 2.058c.784.541 5.534 3.855 5.88 5.671.123.648-.149 1.332-.899 1.797-.477.296-1.043.41-1.613.351a44.666 44.666 0 0 1-2.257-2.302c1.72-1.848 3.11-3.664 3.64-5.21Zm-8.32 4.47c.541.784 3.855 5.534 5.671 5.88.648.123 1.332-.149 1.797-.899.296-.477.41-1.043.351-1.613a44.666 44.666 0 0 0-2.302-2.257c-1.848 1.72-3.664 3.11-5.21 3.64Z"/>
-                        </svg>
-                    </div>
-                    <h5 class="fw-bold">Codeigniter asyik juga kok</h5>
-                    <p class="text-muted small">Bangun aplikasi web yang powerful dan cepat dengan framework CodeIgniter 4 yang ringan.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section Postingan Terbaru -->
-    <div class="row mt-5 mb-5">
-        <div class="col-12 text-center mb-4">
-            <h2 class="fw-bold">Artikel Terbaru</h2>
-            <hr class="mx-auto" style="width: 50px; height: 3px; background: #0d6efd;">
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-5">
+            <h2 class="fw-bold position-relative d-inline-block pb-3">
+                Artikel Terbaru
+                <span class="position-absolute bottom-0 start-50 translate-middle-x bg-primary rounded" style="width: 60px; height: 4px;"></span>
+            </h2>
         </div>
         
-        <?php foreach ($latest_posts as $post) : ?>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-body p-4">
-                        <small class="text-muted d-block mb-2"><?= date('d M Y', strtotime($post['created_at'] ?? 'now')) ?></small>
-                        <h5 class="card-title fw-bold mb-3"><?= $post['title'] ?></h5>
-                        <p class="card-text text-muted small mb-4">
-                            <?= substr(strip_tags($post['content']), 0, 100) ?>...
-                        </p>
-                        <a href="<?= base_url('post/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm rounded-pill">Selengkapnya</a>
+        <?php if (!empty($latest_posts)) : ?>
+            <div class="row">
+                <?php foreach ($latest_posts as $post) : ?>
+                    <div class="col-md-4 mb-4">
+                        <article class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <div class="card-body p-4">
+                                <div class="mb-3">
+                                    <span class="badge bg-primary-soft text-primary rounded-pill px-3 py-2 small fw-bold" style="background-color: rgba(13, 110, 253, 0.1);">Blog Post</span>
+                                </div>
+                                <h5 class="card-title fw-bold mb-3">
+                                    <a href="<?= base_url('post/' . $post['slug']) ?>" class="text-decoration-none text-dark stretched-link">
+                                        <?= esc($post['title']) ?>
+                                    </a>
+                                </h5>
+                                <p class="card-text text-muted mb-4">
+                                    <?= esc(substr(strip_tags($post['content']), 0, 110)) ?>...
+                                </p>
+                                <div class="d-flex align-items-center mt-auto pt-3 border-top">
+                                    <div class="small">
+                                        <span class="text-muted"><i class="far fa-calendar-alt me-1"></i> <?= date('d M Y', strtotime($post['created_at'] ?? 'now')) ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                </div>
+                <?php endforeach ?>
             </div>
-        <?php endforeach ?>
+        <?php else : ?>
+            <div class="col-12 text-center py-5">
+                <p class="text-muted italic">Belum ada artikel yang dipublikasikan.</p>
+            </div>
+        <?php endif; ?>
 
-        <div class="col-12 text-center mt-4">
-            <a href="<?= base_url('post') ?>" class="btn btn-primary px-4 rounded-pill">Lihat Semua Artikel</a>
+        <div class="col-12 text-center mt-5">
+            <a href="<?= base_url('post') ?>" class="btn btn-primary px-5 py-2 rounded-pill fw-bold shadow-sm">
+                Lihat Semua Artikel
+            </a>
         </div>
     </div>
 </div>
