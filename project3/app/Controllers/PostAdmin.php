@@ -13,6 +13,7 @@ class PostAdmin extends BaseController
     {
         $post = new PostModel();
         $data['posts'] = $post->findAll();
+        $data['title'] = 'Admin - List Post';
         return view('admin/admin_post_list', $data);
     }
 
@@ -26,6 +27,7 @@ class PostAdmin extends BaseController
         if(!$data['post']){
             throw PageNotFoundException::forPageNotFound();
         }
+        $data['title'] = $data['post']['title'];
         return view('post_detail', $data);
     }
 
@@ -39,7 +41,7 @@ class PostAdmin extends BaseController
             'content' => 'required'
         ];
 
-        if ($this->validate($rules)) {
+        if ($this->request->is('post') && $this->validate($rules)) {
             $post = new PostModel();
             $post->insert([
                 "title" => $this->request->getPost('title'),
@@ -50,8 +52,10 @@ class PostAdmin extends BaseController
             return redirect()->to('admin/post')->with('success', 'Data Berhasil Disimpan');
         }
 
+        $data['validation'] = $this->validator;
+        $data['title'] = 'Admin - Create Post';
         // display create form
-        return view('admin/admin_post_create');
+        return view('admin/admin_post_create', $data);
     }
 
     //--------------------------------------------------------------
@@ -72,7 +76,7 @@ class PostAdmin extends BaseController
             'content' => 'required'
         ];
 
-        if ($this->validate($rules)) {
+        if ($this->request->is('post') && $this->validate($rules)) {
             $post->update($id, [
                 "title" => $this->request->getPost('title'),
                 "content" => $this->request->getPost('content'),
@@ -81,6 +85,8 @@ class PostAdmin extends BaseController
             return redirect()->to('admin/post')->with('success', 'Data Berhasil Diperbarui');
         }
 
+        $data['validation'] = $this->validator;
+        $data['title'] = 'Admin - Edit Post';
         // display edit form
         return view('admin/admin_post_update', $data);
     }

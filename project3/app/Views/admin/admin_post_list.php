@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBlog</title>
+    <title><?= $title ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
 </head>
@@ -32,7 +32,11 @@
                         <a class="nav-link" href="<?= base_url('admin/setting') ?>">Setting</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('auth/logout') ?>">Logout</a>
+                        <?php if (logged_in()) : ?>
+                            <a class="nav-link" href="<?= base_url('logout') ?>">Logout</a>
+                        <?php else: ?>
+                            <a class="nav-link" href="<?= base_url('login') ?>">Login</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
@@ -67,7 +71,7 @@
                 <tr>
                     <td><?= $post['id'] ?></td>
                     <td>
-                        <strong><?= $post['title'] ?></strong><br>
+                        <strong><?= esc($post['title']) ?></strong><br>
                         <small class="text-muted"><?= $post['created_at'] ?></small>
                     </td>
                     <td>
@@ -131,8 +135,7 @@
         </footer>
     </div>
 
-    <!-- jQuery and Bootstrap JS -->
-    <script src="<?= base_url('js/jquery.min.js') ?>"></script>
+    <!-- Bootstrap JS -->
     <script src="<?= base_url('js/bootstrap.bundle.min.js') ?>"></script>
 
 </body>

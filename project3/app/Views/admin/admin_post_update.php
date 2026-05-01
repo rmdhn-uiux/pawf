@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBlog</title>
+    <title><?= $title ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
 </head>
@@ -47,16 +47,21 @@
     
     <!-- update post -->
     <div class="container">
+        <?php if (isset($validation)): ?>
+            <div class="alert alert-danger">
+                <?= $validation->listErrors() ?>
+            </div>
+        <?php endif; ?>
         <form action="" method="post" id="text-editor">
             <input type="hidden" name="id" value="<?= $post['id'] ?>" />
             <div class="form-group mb-2">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control"
-                    placeholder="Post title" value="<?= $post['title'] ?>" required>
+                    placeholder="Post title" value="<?= esc($post['title']) ?>" required>
             </div>
             <div class="form-group mb-2">
                 <textarea name="content" class="form-control" cols="30" rows="10"
-                        placeholder="Write a great post!"><?= $post['content'] ?></textarea>
+                        placeholder="Write a great post!"><?= esc($post['content']) ?></textarea>
             </div>
             <div class="form-group mb-2">
                 <button type="submit" name="status" value="published"
@@ -75,8 +80,7 @@
         </footer>
     </div>
 
-    <!-- jQuery dan Bootstrap JS -->
-    <script src="<?= base_url('js/jquery.min.js') ?>"></script>
+    <!-- Bootstrap JS -->
     <script src="<?= base_url('js/bootstrap.bundle.min.js') ?>"></script>
 
 </body>

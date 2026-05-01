@@ -12,7 +12,7 @@ $routes->get('/about', 'Page::about');
 $routes->get('/contact', 'Page::contact');
 $routes->get('/faqs', 'Page::faqs');
 
-$routes->group('admin', function($routes){
+$routes->group('admin',['filter' => 'login'], function($routes){ #update
     $routes->get('/', 'PostAdmin::index');
     $routes->get('post', 'PostAdmin::index');
     $routes->get('post/(:num)/preview', 'PostAdmin::preview/$1');

@@ -6,8 +6,12 @@ use App\Models\PostModel;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
+        if (logged_in()) {
+            return redirect()->to('admin/post');
+        }
+
         $postModel = new PostModel();
         
         // Ambil 3 postingan terbaru yang sudah terbit

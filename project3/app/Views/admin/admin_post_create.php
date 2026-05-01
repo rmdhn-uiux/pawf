@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBlog</title>
+    <title><?= $title ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
 </head>
@@ -47,6 +47,11 @@
     
     <!-- create post -->
     <div class="container">
+        <?php if (isset($validation)): ?>
+            <div class="alert alert-danger">
+                <?= $validation->listErrors() ?>
+            </div>
+        <?php endif; ?>
         <form action="" method="post" id="text-editor">
             <div class="form-group mb-2">
                 <label for="title">Title</label>
@@ -75,8 +80,7 @@
         </footer>
     </div>
 
-    <!-- jQuery dan Bootstrap JS -->
-    <script src="<?= base_url('js/jquery.min.js') ?>"></script>
+    <!-- Bootstrap JS -->
     <script src="<?= base_url('js/bootstrap.bundle.min.js') ?>"></script>
 
 </body>

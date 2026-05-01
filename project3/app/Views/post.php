@@ -28,13 +28,18 @@
                                 <span class="badge bg-primary rounded-pill"><?= $post['status'] ?></span>
                                 <small class="text-muted"><?= date('d M Y', strtotime($post['created_at'] ?? 'now')) ?></small>
                             </div>
-                            <h5 class="card-title fw-bold mb-3"><?= $post['title'] ?></h5>
+                            <h5 class="card-title fw-bold mb-3"><?= esc($post['title']) ?></h5>
                             <p class="card-text text-muted small mb-4">
-                                <?= substr(strip_tags($post['content']), 0, 120) ?>...
+                                <?= esc(substr(strip_tags($post['content']), 0, 120)) ?>...
                             </p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="small fw-bold text-dark">By <?= $post['author'] ?></span>
-                                <a href="<?= base_url('post/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm rounded-pill px-3">Read More</a>
+                                <span class="small fw-bold text-dark">By <?= esc($post['author']) ?></span>
+                                <div>
+                                    <a href="<?= base_url('post/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm rounded-pill px-3">Read More</a>
+                                    <?php if (logged_in()) : ?>
+                                        <a href="<?= base_url('admin/post/' . $post['id'] . '/edit') ?>" class="btn btn-outline-warning btn-sm rounded-pill px-3">Edit</a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
