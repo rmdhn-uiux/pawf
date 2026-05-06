@@ -11,32 +11,65 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+        }
         body {
-            background-color: #f8f9fa;
+            background-color: #f3f4f6;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
             font-family: 'Inter', sans-serif;
+            color: #1f2937;
         }
         h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -0.025em;
         }
         .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             color: white;
-            padding: 100px 0;
-            margin-bottom: 3rem;
+            padding: 120px 0;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 40%;
+            height: 100%;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            transform: rotate(-15deg);
         }
         .card {
             border: none;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
         }
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        }
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
         }
         .footer {
-            background-color: #343a40;
-            color: #adb5bd;
-            padding: 3rem 0;
+            background-color: #111827;
+            color: #9ca3af;
+            padding: 4rem 0;
             margin-top: 5rem;
         }
     </style>

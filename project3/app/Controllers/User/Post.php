@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -28,7 +28,10 @@ class Post extends BaseController
                  ->groupEnd();
         }
 
-        $data['posts'] = $post->where('status', 'published')->paginate(6, 'post');
+        $data['posts'] = $post->select('posts.*, categories.name as category_name')
+                             ->join('categories', 'categories.id = posts.category_id', 'left')
+                             ->where('status', 'published')
+                             ->paginate(6, 'post');
         $data['pager'] = $post->pager;
 
         // siapkan data untuk dikirim ke view

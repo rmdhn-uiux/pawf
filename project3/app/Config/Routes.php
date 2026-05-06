@@ -5,14 +5,15 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
-$routes->get('/post', 'Post::index');
-$routes->get('/post/(:segment)', 'Post::viewPost/$1');
-$routes->get('/about', 'Page::about');
-$routes->get('/contact', 'Page::contact');
-$routes->get('/faqs', 'Page::faqs');
+$routes->group('', ['namespace' => 'App\Controllers\User'], function($routes) {
+    $routes->get('/', 'Home::index');
+    $routes->get('/post', 'Post::index');
+    $routes->get('/post/(:segment)', 'Post::viewPost/$1');
+    $routes->get('/about', 'Page::about');
+    $routes->get('/contact', 'Page::contact');
+});
 
-$routes->group('admin',['filter' => 'login'], function($routes){ #update
+$routes->group('admin',['filter' => 'login', 'namespace' => 'App\Controllers\Admin'], function($routes){ #update
     $routes->get('/', 'PostAdmin::index');
     $routes->get('post', 'PostAdmin::index');
     $routes->get('post/(:num)/preview', 'PostAdmin::preview/$1');

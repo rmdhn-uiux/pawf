@@ -23,9 +23,6 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('contact') ?>">Contact</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('faqs') ?>">FAQ</a>
-        </li>
       </ul>
       <form class="d-flex me-2" action="<?= base_url('post') ?>" method="get">
         <input class="form-control me-2" type="search" name="keyword" placeholder="Search" aria-label="Search" value="<?= service('request')->getGet('keyword') ?>">

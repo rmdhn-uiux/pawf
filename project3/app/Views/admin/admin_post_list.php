@@ -1,142 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+<?= $this->extend('layouts/main') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?></title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
-</head>
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="<?= base_url() ?>">MyBlog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('admin/post') ?>">Blog</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="<?= base_url('admin/post/new') ?>"
-                           class="btn btn-primary mr-3">New Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('admin/setting') ?>">Setting</a>
-                    </li>
-                    <li class="nav-item">
-                        <?php if (logged_in()) : ?>
-                            <a class="nav-link" href="<?= base_url('logout') ?>">Logout</a>
-                        <?php else: ?>
-                            <a class="nav-link" href="<?= base_url('login') ?>">Login</a>
-                        <?php endif; ?>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container py-5">
-            <h1 class="display-5 fw-bold">Blog > Admin</h1>
-        </div>
-    </div>
-
+<?= $this->section('content') ?>
+<div class="hero-section text-center shadow-lg mb-5">
     <div class="container">
-        <?php if(session()->getFlashdata('success')): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <?= session()->getFlashdata('success') ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
+        <h1 class="display-3 fw-extrabold mb-3">Admin Panel</h1>
+        <p class="lead mb-0 opacity-90">Kelola artikel, kategori, dan konten blog Anda di sini.</p>
+    </div>
+</div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($posts as $post): ?>
-                <tr>
-                    <td><?= $post['id'] ?></td>
-                    <td>
-                        <strong><?= esc($post['title']) ?></strong><br>
-                        <small class="text-muted"><?= $post['created_at'] ?></small>
-                    </td>
-                    <td>
-                        <?php if($post['status'] === 'published'): ?>
-                        <small class="text-success"><?= $post['status'] ?></small>
-                        <?php else: ?>
-                        <small class="text-muted"><?= $post['status'] ?></small>
-                        <?php endif ?>
-                    </td>
-                    <td>
-                        <a href="<?= base_url('admin/post/'.$post['id'].'/preview') ?>"
-                           class="btn btn-sm btn-outline-secondary" target="_blank">Preview</a>
-                        <a href="<?= base_url('admin/post/'.$post['id'].'/edit') ?>"
-                           class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a href="#"
-                           data-href="<?= base_url('admin/post/'.$post['id'].'/delete') ?>"
-                           onclick="confirmToDelete(this)"
-                           class="btn btn-sm btn-outline-danger">Delete</a>
-                    </td>
-                </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
-
-        <!-- Delete Confirmation Modal -->
-        <div id="confirm-dialog" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h2 class="h2">Are you sure?</h2>
-                        <p>The data will be deleted and lost forever</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" role="button" id="delete-button"
-                           class="btn btn-danger">Delete</a>
-                        <button type="button" class="btn btn-secondary"
-                                data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </div>
+<div class="container my-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <h2 class="fw-extrabold mb-0">Daftar <span class="text-primary">Artikel</span></h2>
+            <p class="text-muted mb-0">Total artikel yang terdaftar dalam sistem.</p>
         </div>
-
-        <script>
-            function confirmToDelete(el) {
-                document.getElementById("delete-button")
-                    .setAttribute("href", el.dataset.href);
-                var myModal = new bootstrap.Modal(
-                    document.getElementById('confirm-dialog'), {
-                    keyboard: false
-                });
-                myModal.show();
-            }
-        </script>
+        <a href="<?= base_url('admin/post/new') ?>" class="btn btn-primary btn-lg rounded-pill px-4 fw-bold shadow">
+            <i class="fas fa-plus me-2"></i> Buat Artikel Baru
+        </a>
     </div>
 
-    <div class="container py-4">
-        <footer class="pt-3 mt-4 text-muted border-top">
-            <div class="container">
-                &copy; <?= Date('Y') ?>
+    <?php if (session()->getFlashdata('success')): ?>
+        <div class="alert alert-success border-0 shadow-sm rounded-4 d-flex align-items-center p-4 mb-4" role="alert">
+            <i class="fas fa-check-circle fa-2x me-3 text-success"></i>
+            <div>
+                <h6 class="fw-bold mb-0">Berhasil!</h6>
+                <span><?= session()->getFlashdata('success') ?></span>
             </div>
-        </footer>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4 py-3 text-uppercase small fw-bold text-muted">Gambar</th>
+                            <th class="py-3 text-uppercase small fw-bold text-muted">Informasi Artikel</th>
+                            <th class="py-3 text-uppercase small fw-bold text-muted">Kategori</th>
+                            <th class="py-3 text-uppercase small fw-bold text-muted">Status</th>
+                            <th class="py-3 text-uppercase small fw-bold text-muted text-end pe-4">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($posts as $post): ?>
+                            <tr>
+                                <td class="ps-4">
+                                    <?php if ($post['post_image']): ?>
+                                        <img src="<?= base_url('uploads/post/' . $post['post_image']) ?>" alt="<?= $post['title'] ?>" class="rounded-3 shadow-sm" style="width: 70px; height: 50px; object-fit: cover;">
+                                    <?php else: ?>
+                                        <div class="bg-light text-muted d-flex align-items-center justify-content-center rounded-3 shadow-sm" style="width: 70px; height: 50px;">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <div class="fw-bold text-dark"><?= esc($post['title']) ?></div>
+                                    <small class="text-muted d-block mt-1"><i class="far fa-clock me-1"></i> <?= date('d M Y', strtotime($post['created_at'] ?? 'now')) ?></small>
+                                </td>
+                                <td>
+                                    <span class="badge rounded-pill px-3 py-2 fw-bold" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
+                                        <?= esc($post['category_name'] ?? 'General') ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <?php if ($post['status'] === 'published'): ?>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-3 py-2 fw-bold" style="background-color: rgba(25, 135, 84, 0.1);">
+                                            <i class="fas fa-check-circle me-1"></i> Published
+                                        </span>
+                                    <?php else: ?>
+                                        <span class="badge bg-warning-soft text-warning rounded-pill px-3 py-2 fw-bold" style="background-color: rgba(255, 193, 7, 0.1);">
+                                            <i class="fas fa-pen me-1"></i> Draft
+                                        </span>
+                                    <?php endif; ?>
+                                </td>
+                                <td class="text-end pe-4">
+                                    <div class="dropdown">
+                                        <button class="btn btn-light btn-sm rounded-circle shadow-sm" type="button" data-bs-toggle="dropdown" style="width: 35px; height: 35px;">
+                                            <i class="fas fa-ellipsis-v text-muted"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3">
+                                            <li><a class="dropdown-item py-2" href="<?= base_url('admin/post/' . $post['id'] . '/preview') ?>" target="_blank"><i class="fas fa-eye me-2 text-primary"></i> Preview</a></li>
+                                            <li><a class="dropdown-item py-2" href="<?= base_url('admin/post/' . $post['id'] . '/edit') ?>"><i class="fas fa-edit me-2 text-warning"></i> Edit</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item py-2 text-danger" href="#" onclick="if(confirm('Apakah Anda yakin ingin menghapus artikel ini?')) window.location='<?= base_url('admin/post/' . $post['id'] . '/delete') ?>'"><i class="fas fa-trash-alt me-2"></i> Hapus</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if (empty($posts)): ?>
+                <div class="text-center py-5">
+                    <p class="text-muted mb-0">Belum ada artikel yang dibuat.</p>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="<?= base_url('js/bootstrap.bundle.min.js') ?>"></script>
-
-</body>
-</html>
+</div>
+<?= $this->endSection() ?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
 use App\Controllers\BaseController;
 
@@ -14,10 +14,5 @@ class Page extends BaseController
     public function contact()
     {
         return view('contact', ['title' => 'Contact Us']);
-    }
-
-    public function faqs()
-    {
-        return view('faqs', ['title' => 'Frequently Asked Questions']);
     }
 }

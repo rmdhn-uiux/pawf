@@ -1,87 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<?= $this->extend('layouts/main') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?></title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>" />
-</head>
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="<?= base_url() ?>">MyBlog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('admin/post') ?>">Blog</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="<?= base_url('admin/post/new') ?>"
-                           class="btn btn-primary mr-3">New Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('admin/setting') ?>">Setting</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('auth/logout') ?>">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container py-5">
-            <h1 class="display-5 fw-bold">Blog > Admin</h1>
-        </div>
-    </div>
-    
-    <!-- update post -->
+<?= $this->section('content') ?>
+<div class="hero-section text-center shadow-lg mb-5">
     <div class="container">
-        <?php if (isset($validation)): ?>
-            <div class="alert alert-danger">
-                <?= $validation->listErrors() ?>
-            </div>
-        <?php endif; ?>
-        <form action="" method="post" id="text-editor">
-            <input type="hidden" name="id" value="<?= $post['id'] ?>" />
-            <div class="form-group mb-2">
-                <label for="title">Title</label>
-                <input type="text" name="title" class="form-control"
-                    placeholder="Post title" value="<?= esc($post['title']) ?>" required>
-            </div>
-            <div class="form-group mb-2">
-                <textarea name="content" class="form-control" cols="30" rows="10"
-                        placeholder="Write a great post!"><?= esc($post['content']) ?></textarea>
-            </div>
-            <div class="form-group mb-2">
-                <button type="submit" name="status" value="published"
-                        class="btn btn-primary">Publish</button>
-                <button type="submit" name="status" value="draft"
-                        class="btn btn-secondary">Save to Draft</button>
-            </div>
-        </form>
+        <h1 class="display-3 fw-extrabold mb-3">Edit Artikel</h1>
+        <p class="lead mb-0 opacity-90">Perbarui konten Anda agar tetap relevan dan menarik bagi pembaca.</p>
     </div>
+</div>
 
-    <div class="container py-4">
-        <footer class="pt-3 mt-4 text-muted border-top">
-            <div class="container">
-                &copy; <?= Date('Y') ?>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-body p-4 p-md-5">
+                    <?php if (isset($validation)): ?>
+                        <div class="alert alert-danger border-0 shadow-sm rounded-4 mb-4">
+                            <h6 class="fw-bold mb-2">Mohon perbaiki kesalahan berikut:</h6>
+                            <?= $validation->listErrors() ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="row g-4">
+                            <div class="col-md-8">
+                                <div class="mb-4">
+                                    <label for="title" class="form-label fw-bold text-dark">Judul Artikel</label>
+                                    <input type="text" name="title" class="form-control form-control-lg bg-light border-0 px-4 py-3 rounded-3" id="title" placeholder="Masukkan judul..." required value="<?= old('title', $post['title']) ?>">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="content" class="form-label fw-bold text-dark">Konten Artikel</label>
+                                    <textarea name="content" class="form-control bg-light border-0 px-4 py-3 rounded-3" id="content" rows="12" placeholder="Tuliskan isi artikel..." required><?= old('content', $post['content']) ?></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-light p-4 rounded-4 shadow-sm h-100">
+                                    <div class="mb-4">
+                                        <label for="category_id" class="form-label fw-bold text-dark small text-uppercase">Kategori</label>
+                                        <select name="category_id" id="category_id" class="form-select border-0 px-3 py-2 rounded-3 shadow-sm" required>
+                                            <?php foreach ($categories as $category): ?>
+                                                <option value="<?= $category['id'] ?>" <?= (old('category_id', $post['category_id']) == $category['id']) ? 'selected' : '' ?>>
+                                                    <?= esc($category['name']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4 text-center">
+                                        <label class="form-label fw-bold text-dark small text-uppercase d-block mb-3">Gambar Saat Ini</label>
+                                        <?php if ($post['post_image']): ?>
+                                            <div class="position-relative mb-3 rounded-3 overflow-hidden shadow-sm">
+                                                <img src="<?= base_url('uploads/post/' . $post['post_image']) ?>" alt="Post Image" class="img-fluid w-100" style="max-height: 200px; object-fit: cover;">
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="bg-white p-4 text-center rounded-3 shadow-sm mb-3">
+                                                <i class="fas fa-image fa-2x text-muted opacity-25"></i>
+                                                <p class="small text-muted mt-2 mb-0">Belum ada gambar</p>
+                                            </div>
+                                        <?php endif; ?>
+                                        <input type="file" name="post_image" id="post_image" class="form-control border-0 shadow-sm" accept="image/*">
+                                        <small class="text-muted d-block mt-2">Biarkan kosong jika tidak ingin mengganti gambar.</small>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="form-label fw-bold text-dark small text-uppercase d-block mb-3">Status Publikasi</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="status_published" value="published" <?= $post['status'] === 'published' ? 'checked' : '' ?>>
+                                            <label class="form-check-label fw-bold text-success" for="status_published">Publish</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="status_draft" value="draft" <?= $post['status'] === 'draft' ? 'checked' : '' ?>>
+                                            <label class="form-check-label fw-bold text-warning" for="status_draft">Draft</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold shadow">Perbarui Artikel</button>
+                                        <a href="<?= base_url('admin/post') ?>" class="btn btn-light btn-lg rounded-pill fw-bold">Batal</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </footer>
+        </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="<?= base_url('js/bootstrap.bundle.min.js') ?>"></script>
-
-</body>
-</html>
+</div>
+<?= $this->endSection() ?>
